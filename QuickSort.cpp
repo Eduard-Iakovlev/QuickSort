@@ -12,9 +12,7 @@ void Quick_sort::swap(int& x, int& y){
 }
 
 void Quick_sort::quicksort_f(vector<int>& vec, int left, int right, shared_ptr<promise<void>> promise){
-    future<void> f = async(launch::async, [&]() {
-        quicksort(vec, left, right);
-        });
+    future<void> f = async(launch::async, [&](){quicksort(vec, left, right);});
     f.wait();
     promise->set_value();
 }

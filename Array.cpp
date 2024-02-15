@@ -45,7 +45,7 @@ int Array::menu() {
         if (_menu > 2) {
             system("cls");
             data.clear();
-            std::cout << " Не верный ввод\n Введите номер номер соответствующий действию:\n";
+            std::cout << " Не верный ввод\n Введите номер соответствующий действию:\n";
             continue;
         }
         else break;
