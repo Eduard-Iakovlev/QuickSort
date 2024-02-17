@@ -8,15 +8,17 @@
 
 using namespace std;
 
-typedef function<void()> task_type;
-typedef void (*FuncType) (vector<int>, int, int, shared_ptr<promise<void>>);
+//typedef function<void()> task_type;
+//typedef void (*FuncType) (vector<int>, int, int, shared_ptr<promise<void>>);
 
 class PoolThread {
 public:
 	PoolThread() = default;
 	void start();
 	void stop();
-	void push_task(FuncType f, vector<int> vec, int left, int right, shared_ptr<promise<void>> promise);
+	//void push_task(FuncType f, vector<int> vec, int left, int right, shared_ptr<promise<void>> promise);
+	template<typename F, typename... Args>
+	void push_task(F&& f, Args&&... args);
 	void threadFunc();
 private:
 	vector<thread> m_threads;
@@ -24,4 +26,6 @@ private:
 	mutex m_locker;
 	condition_variable m_event_holder;
 	volatile bool m_work;
+public:
+
 };
