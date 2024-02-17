@@ -19,7 +19,7 @@ void QuickSort::quicksort_f(std::vector<int>& vec, int left, int right, std::sha
 
 void QuickSort::quicksort(std::vector<int>& vec, int left, int right) {
     if (left >= right) return;
-    RequestHandler rh;
+    PoolThread rh;
     auto promise = std::make_shared<std::promise<void>>();
     int pi = partition(vec, left, right);
     if (pi - left > 100000) {

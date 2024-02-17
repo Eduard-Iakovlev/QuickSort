@@ -31,7 +31,7 @@ void Array::print_end() {
 }
 
 void Array::sort_arr() {
-    Quick_sort sort;
+    QuickSort sort;
     sort.quicksort(_arr, 0, _arr.size() - 1);
 }
 

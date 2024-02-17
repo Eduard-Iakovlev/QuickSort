@@ -1,6 +1,7 @@
 #pragma once
 #include <vector>
-using namespace std;
+#include <future>
+//using namespace std;
 
 
 class QuickSort {
