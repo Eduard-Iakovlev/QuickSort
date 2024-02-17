@@ -1,3 +1,4 @@
+#pragma once
 #include <vector>
 #include <queue>
 #include <mutex>
@@ -25,3 +26,12 @@ private:
     std::condition_variable m_event_holder;
     volatile bool m_work;
 };
+
+template<typename F, typename... Args>
+void PoolThread::push_task(F&& f, Args&&... args) {
+    {
+        std::lock_guard<std::mutex> l(m_locker);
+        m_task_queue.push(std::bind(std::forward<F>(f), std::forward<Args>(args)...));
+    }
+    m_event_holder.notify_one();
+}

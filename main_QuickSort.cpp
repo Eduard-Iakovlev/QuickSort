@@ -1,5 +1,5 @@
 ﻿#include <iostream>
-#include "Array.h"4
+#include "Array.h"
 #include "Windows.h"
 
 
