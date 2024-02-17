@@ -3,7 +3,8 @@
 #include <future>
 #include <algorithm>
 #include "PoolThread.h"
-#include "RequestHander.h"
+#include <ctime>
+#include <iostream>
 
 void QuickSort::swap(int& x, int& y) {
     int temp = x;
@@ -22,8 +23,9 @@ void QuickSort::quicksort(std::vector<int>& vec, int left, int right) {
     PoolThread rh;
     auto promise = std::make_shared<std::promise<void>>();
     int pi = partition(vec, left, right);
-    if (pi - left > 100000) {
+    if (pi - left > 100) {
         rh.push_task(&QuickSort::quicksort_f, this, std::ref(vec), left, pi - 1, promise);
+        //rh.push_task(&QuickSort::quicksort_f, this, std::ref(vec), pi + 1, right, promise);
         quicksort(vec, pi + 1, right);
     }
     else {
