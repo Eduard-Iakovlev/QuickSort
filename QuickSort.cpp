@@ -22,7 +22,7 @@ void QuickSort::quicksort(std::vector<int>& vec, int left, int right) {
     PoolThread rh;
     auto promise = std::make_shared<std::promise<void>>();
     int pi = partition(vec, left, right);
-    if (pi - left > 100000000) {
+    if (pi - left > 100000) {
         rh.push_task(&QuickSort::quicksort_f, this, std::ref(vec), left, pi - 1, promise);
         quicksort(vec, pi + 1, right);
     }
